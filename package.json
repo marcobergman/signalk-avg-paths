@@ -1,0 +1,26 @@
+{
+  "name": "signalk-avg-paths",
+  "version": "1.0.0",
+  "description": "Test Chris",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Marco Bergman",
+    "email": "marcobergman@gmail.com"
+  },
+  "license": "ISC",
+  "keywords": [
+    "signalk-node-server-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcobergman/signalk-browser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcobergman/signalk-browser/issues"
+  },
+  "homepage": "https://github.com/marcobergman/signalk-browser#readme",
+  "dependencies": {}
+}
