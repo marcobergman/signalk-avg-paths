@@ -1,7 +1,8 @@
 # signalk-avg-paths
-Plugin to dampen out the values of certain paths
+Plugin to dampen out the values of certain paths. Courtesy to Chris.
 
-Paths concerned are 
+Paths concerned are:
+
 |Path| Smoothed path|
 |--------|--------|
 |environment.wind.angleApparent|environment.wind.angleApparent_smooth|
