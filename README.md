@@ -2,7 +2,8 @@
 Plugin to dampen out the values of certain paths
 
 Paths concerned are 
-
+|Path| Smoothed path|
+|--------|--------|
 |environment.wind.angleApparent|environment.wind.angleApparent_smooth|
 |environment.wind.directionTrue|environment.wind.directionTrue_smooth|
 |environment.wind.angleTrueGround|environment.wind.angleTrueGround_smooth|
