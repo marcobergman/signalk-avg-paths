@@ -1,7 +1,7 @@
 {
   "name": "signalk-avg-paths",
-  "version": "1.0.0",
-  "description": "Test Chris",
+  "version": "1.0.1",
+  "description": "Signal K plugin for smoothening the values of various paths.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,11 +16,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marcobergman/signalk-browser.git"
+    "url": "git+https://github.com/marcobergman/signalk-avg-paths.git"
   },
   "bugs": {
-    "url": "https://github.com/marcobergman/signalk-browser/issues"
+    "url": "https://github.com/marcobergman/signalk-avg-paths/issues"
   },
-  "homepage": "https://github.com/marcobergman/signalk-browser#readme",
+  "homepage": "https://github.com/marcobergman/signalk-avg-paths#readme",
   "dependencies": {}
 }
