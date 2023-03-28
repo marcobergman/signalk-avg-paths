@@ -15,6 +15,7 @@ module.exports = function (app) {
 
     const array_AWA = [];
     const array_TWD = [];
+    const array_TWS = [];
     const array_GWA = [];
     const array_TWA = [];
     const array_HDG = [];
@@ -70,6 +71,12 @@ module.exports = function (app) {
                     path: 'environment.wind.angleApparent_smooth',
                     value: smooth_angle
                   }
+                ],
+                meta: [
+                  {
+                    path: 'environment.wind.angleApparent_smooth',
+				    value: {"units": "rad"}
+                  }
                 ]
                }
               ]
@@ -100,10 +107,12 @@ module.exports = function (app) {
             // artificial wind angle for debugging
             smooth_angle += options.angleOffset /180.0*3.141592654
 
-
-
             if(smooth_angle > twoPi){ smooth_angle -= twoPi }
 
+ 			var cardinal_directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W','WNW', 'NW', 'NNW', 'N']
+			j = Math.round (smooth_angle / 2 / Math.PI * 16)
+			
+			cardinal_direction = cardinal_directions[j]
 
             app.handleMessage('signalk-avg-paths', {
               updates: [
@@ -112,11 +121,71 @@ module.exports = function (app) {
                   {
                     path: 'environment.wind.directionTrue_smooth',
                     value: smooth_angle
+                  },
+                  {
+                    path: 'environment.wind.directionCardinal_smooth',
+                    value: cardinal_direction
+                  }
+                ],
+                meta: [
+                  {
+                    path: 'environment.wind.directionTrue_smooth',
+				    value: {"units": "rad"}
                   }
                 ]
                }
               ]
             }) // handleMessage}
+
+
+
+
+        } else if(pathValue.path === "environment.wind.speedTrue") {  // path
+            if(array_TWS.length >= options.smoothSamples){
+               array_TWS.pop()
+            }
+            array_TWS.unshift(pathValue.value)
+
+            var tws_sum = 0;
+            var arrayLength  = array_TWS.length
+            for(var i = 0; i < arrayLength; i++) {
+                tws_sum += array_TWS[i];
+            }
+            var true_wind_speed = tws_sum/arrayLength;
+
+ 			var beaufort_scale = ['0', '1', '1', '1', '2', '2', '2', '3', '3', '3', '3', '4-', '4-', '4', '4', '4+', '4+', '5-', '5-', '5', '5+', '5+', '6-', '6-', '6', '6', '6+', '6+', '7-', '7-', '7', '7', '7+', '7+']
+			j = Math.round (true_wind_speed * 3600 / 1852)
+			
+			if (j < beaufort_scale.length) {
+				beaufort = beaufort_scale[j]
+			} else {
+				beaufort = ">7"
+			}
+
+			app.handleMessage('signalk-avg-paths', {
+              updates: [
+                {
+                values: [
+                  {
+                    path: 'environment.wind.speedTrue_smooth',
+                    value: true_wind_speed
+                  },
+                  {
+                    path: 'environment.wind.beaufort_smooth',
+                    value: beaufort
+                  }
+                ],
+                meta: [
+                  {
+                    path: 'environment.wind.speedTrue_smooth',
+				    value: {"units": "m/s"}
+                  }
+                ]
+               }
+              ]
+            }) // handleMessage}
+			
+
 
 
 
@@ -147,6 +216,12 @@ module.exports = function (app) {
                   {
                     path: 'environment.wind.angleTrueGround_smooth',
                     value: smooth_angle
+                  }
+                ],
+                meta: [
+                  {
+                    path: 'environment.wind.angleTrueGround_smooth',
+				    value: {"units": "rad"}
                   }
                 ]
                }
@@ -181,6 +256,12 @@ module.exports = function (app) {
                   {
                     path: 'environment.wind.angleTrueWater_smooth',
                     value: smooth_angle
+                  }
+                ],
+                meta: [
+                  {
+                    path: 'environment.wind.angleTrueWater_smooth',
+				    value: {"units": "rad"}
                   }
                 ]
                }
@@ -217,6 +298,12 @@ module.exports = function (app) {
                     path: 'navigation.headingTrue_smooth',
                     value: smooth_angle
                   }
+                ],
+                meta: [
+                  {
+                    path: 'navigation.headingTrue_smooth',
+				    value: {"units": "rad"}
+                  }
                 ]
                }
               ]
@@ -251,6 +338,12 @@ module.exports = function (app) {
                   {
                     path: 'navigation.courseOverGroundTrue_smooth',
                     value: smooth_angle
+                  }
+                ],
+                meta: [
+                  {
+                    path: 'navigation.courseOverGroundTrue_smooth',
+				    value: {"units": "rad"}
                   }
                 ]
                }
