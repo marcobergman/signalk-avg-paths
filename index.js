@@ -29,7 +29,6 @@ module.exports = function (app) {
       delta.updates.forEach(update => {
 		if (!(update.source !== undefined && update.source.talker === "AI")) { // don't process AIS messages
 			update.values.forEach(pathValue => {
-			 console.log (pathValue)
 			 if(pathValue.path === "environment.wind.angleApparent") {
 
 				//if(arr_AWA.length == 1){
@@ -274,7 +273,6 @@ module.exports = function (app) {
 				   array_HDG.pop()
 				}
 				array_HDG.unshift(pathValue.value)
-				//console.log(pathValue.path, pathValue.value);
 				
 				var angleSin_sum = 0;
 				var angleCos_sum = 0;
