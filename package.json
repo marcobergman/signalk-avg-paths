@@ -1,6 +1,6 @@
 {
   "name": "signalk-avg-paths",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Signal K plugin for smoothening the values of various paths.",
   "main": "index.js",
   "scripts": {
