@@ -27,7 +27,7 @@ module.exports = function (app) {
     // Capture incoming delta, check for range and if below threshold send delta to server
     app.registerDeltaInputHandler((delta, next) => {
       delta.updates.forEach(update => {
-		if (!(update.source !== undefined && update.source.talker === "AI")) { // don't process AIS messages
+		if (!(update.source !== undefined && update.source.talker === "AI") && update.values) { // don't process AIS messages
 			update.values.forEach(pathValue => {
 			 if(pathValue.path === "environment.wind.angleApparent") {
 
